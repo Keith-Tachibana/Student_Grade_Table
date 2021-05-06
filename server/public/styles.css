@@ -1,0 +1,85 @@
+body {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+@media only screen and (max-width: 1024px) and (orientation: landscape) {
+  input::placeholder {
+    font-size: 0.75rem;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  #page-title {
+    text-align: center;
+  }
+
+  #average-grade-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .grade-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  table {
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .grade-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  table {
+    margin-top: 10px;
+  }
+
+  input::placeholder {
+    font-size: 1rem;
+  }
+
+  .operations {
+    margin: 5px;
+
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .operations {
+    margin: 5px;
+    table-layout: fixed;
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+  input::placeholder {
+    font-size: 1rem;
+  }
+
+  table {
+    font-size: 0.8rem;
+    margin-top: 10px;
+    position: relative;
+    right: 25px;
+  }
+
+  thead {
+    text-align: center;
+  }
+
+  .delete {
+    position: relative;
+    right: 3px;
+  }
+
+  .grade-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
