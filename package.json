@@ -21,11 +21,17 @@
   },
   "homepage": "https://github.com/Keith-Tachibana/Student_Grade_Table_Fullstack#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-flash": "^0.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "pg": "^8.6.0",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",

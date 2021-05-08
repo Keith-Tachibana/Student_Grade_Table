@@ -9,8 +9,8 @@ app.use(express.json());
 app.get('/api/grades', (req, res, next) => {
   const sql = `
     SELECT *
-      FROM "grades"
-  ORDER BY "gradeId" ASC;
+    FROM "grades"
+    ORDER BY "gradeId" ASC;
   `;
   db.query(sql)
     .then(result => {
@@ -35,9 +35,9 @@ app.get('/api/grades/:gradeId', (req, res, next) => {
   }
   const sql = `
     SELECT *
-      FROM "grades"
-  ORDER BY "gradeId" ASC
-      WHERE "gradeId" = $1;
+    FROM "grades"
+    ORDER BY "gradeId" ASC
+    WHERE "gradeId" = $1;
   `;
   const params = [gradeId];
   db.query(sql, params)
@@ -73,8 +73,8 @@ app.post('/api/grades', (req, res, next) => {
   const values = [name, course, grade];
   const sql = `
     INSERT INTO "grades" ("name", "course", "grade")
-         VALUES ($1, $2, $3)
-      RETURNING *;
+    VALUES ($1, $2, $3)
+    RETURNING *;
   `;
   db.query(sql, values)
     .then(result => {
@@ -104,9 +104,9 @@ app.put('/api/grades/:gradeId', (req, res, next) => {
   const values = [name, course, grade, gradeId];
   const sql = `
     UPDATE "grades"
-       SET "name" = $1, "course" = $2, "grade" = $3
-     WHERE "gradeId" = $4
- RETURNING *;
+    SET "name" = $1, "course" = $2, "grade" = $3
+    WHERE "gradeId" = $4
+    RETURNING *;
   `;
   db.query(sql, values)
     .then(result => {
@@ -137,8 +137,8 @@ app.delete('/api/grades/:gradeId', (req, res, next) => {
   const params = [gradeId];
   const sql = `
     DELETE FROM "grades"
-          WHERE "gradeId" = $1
-      RETURNING *;
+    WHERE "gradeId" = $1
+    RETURNING *;
   `;
   db.query(sql, params)
     .then(result => {
