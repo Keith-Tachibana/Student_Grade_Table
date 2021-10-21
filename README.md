@@ -1,5 +1,5 @@
 # Student Grade Table
-A simple CRUD (Create, Read, Update, Delete), full-stack web application to create, read, update, and delete student grades
+A simple CRUD (Create, Read, Update, Delete) application designed for teachers to keep track of their student's progress. Uses a PostgreSQL database in the back-end that is protected from potential SQL injection attacks.
 ## Technologies Used
 |                 Dependency          |    Version    |
 |-------------------------------------|--------------:|
