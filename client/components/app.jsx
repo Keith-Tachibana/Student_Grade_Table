@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+//import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Header from './header';
 import Login from './login';
 import GradeTable from './gradeTable';
 import GradeForm from './gradeForm';
-import useToken from '../api/useToken';
+//import useToken from '../api/useToken';
 
 class App extends Component {
   constructor(props) {
@@ -114,11 +114,7 @@ class App extends Component {
 
   getAverageGrade() {
     const { grades } = this.state;
-    let result = 0;
-    for (let i = 0; i < grades.length; i++) {
-      result += grades[i].grade;
-    }
-    const average = result / grades.length;
+    const average = grades.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / grades.length;
     const displayAvg = isNaN(average) ? 'N/A' : average.toFixed(1);
     return displayAvg;
   }
