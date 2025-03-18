@@ -18,11 +18,11 @@ A simple CRUD (Create, Read, Update, Delete) application designed for teachers t
 ## Live Demo
 Try the application live on [my porftolio website](https://www.keith-tachibana.com/portfolio/studentGradeTable/server/public/index.html)
 ## Features
-- _*_ Teachers can view a list of recorded grades
-- _*_ Teachers can view the average grade for the class
-- _*_ Teachers can add a grade to the table
-- _*_ Teachers can delete a grade from the table
-- _*_ Teachers can edit the student name, course name, or student grade from the table
+- Teachers can view a list of recorded grades
+- Teachers can view the average grade for the class
+- Teachers can add a grade to the table
+- Teachers can delete a grade from the table
+- Teachers can edit the student name, course name, or student grade from the table
 ## Preview
 ![Student Grade Table Preview](preview.gif "Student Grade Table Preview")
 ## Development
