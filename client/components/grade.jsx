@@ -19,6 +19,7 @@ class Grade extends Component {
 
   render() {
     const { name, course, grade } = this.props;
+    console.log("Name:", name, "Course:", course, "Grade:", grade);
     return (
       <React.Fragment>
         <tr>
