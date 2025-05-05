@@ -27,15 +27,17 @@ class GradeTable extends Component {
       );
     } else {
         const studentGrades = this.props.grades.map(grade => {
-          <Grade
-            key={grade.gradeId}
-            id={grade.gradeId}
-            name={grade.name}
-            course={grade.course}
-            grade={grade.grade}
-            deleteGrade={this.props.deleteGrade}
-            updateGrade={this.props.updateGrade}
-          />
+          return (
+            <Grade
+              key={grade.gradeId}
+              id={grade.gradeId}
+              name={grade.name}
+              course={grade.course}
+              grade={grade.grade}
+              deleteGrade={this.props.deleteGrade}
+              updateGrade={this.props.updateGrade}
+            />
+          );
         });
         return (
           <React.Fragment>
