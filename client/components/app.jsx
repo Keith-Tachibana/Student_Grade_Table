@@ -114,7 +114,7 @@ class App extends Component {
 
   getAverageGrade() {
     const { grades } = this.state;
-    const average = grades.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / grades.length;
+    const average = grades.reduce((accumulator, currentValue) => accumulator + currentValue.grade, 0) / grades.length;
     const displayAvg = isNaN(average) ? 'N/A' : average.toFixed(1);
     return displayAvg;
   }
