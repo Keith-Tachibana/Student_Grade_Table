@@ -16,7 +16,7 @@ A simple CRUD (Create, Read, Update, Delete) application designed for teachers t
 | Webpack                             |     4.42.0    |
 | Webpack-CLI                         |     3.3.11    |
 ## Live Demo
-Try the application live on [my porftolio website](https://www.keith-tachibana.com/portfolio/studentGradeTable/server/public/index.html)
+Try the application live on [my porftolio website](https://grades.keith-tachibana.com/).
 ## Features
 - Teachers can view a list of recorded grades
 - Teachers can view the average grade for the class
