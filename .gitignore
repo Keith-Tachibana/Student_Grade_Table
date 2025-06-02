@@ -1,4 +1,7 @@
 .env
 node_modules/
 .vs/
+.vscode/
+.DS_Store
 .idea/
+.fleet/

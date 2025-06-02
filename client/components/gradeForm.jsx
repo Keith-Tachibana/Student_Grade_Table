@@ -35,7 +35,7 @@ class GradeForm extends Component {
       const newEntry = {
         name: this.state.name,
         course: this.state.course,
-        grade: parseInt(this.state.grade),
+        grade: parseInt(this.state.grade, 10),
         gradeId: this.state.gradeId
       };
       this.setState({
@@ -167,6 +167,7 @@ class GradeForm extends Component {
             </div>
             {this.renderButton()}
             <button
+              type="reset"
               onClick={this.handleReset}
               className="ml-4 btn btn-warning"
               name="cancel">

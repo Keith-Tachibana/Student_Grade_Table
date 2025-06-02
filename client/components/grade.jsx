@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 class Grade extends Component {
   constructor(props) {
     super(props);
-    this.handleDelete = this.handleDelete.bind(this);
+    this.handleConfirmDelete = this.handleConfirmDelete.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
   }
 
-  handleDelete() {
+  handleConfirmDelete() {
     const { deleteGrade, id } = this.props;
     deleteGrade(id);
   }
@@ -19,7 +19,6 @@ class Grade extends Component {
 
   render() {
     const { name, course, grade } = this.props;
-    console.log("Name:", name, "Course:", course, "Grade:", grade);
     return (
       <React.Fragment>
         <tr>
@@ -31,13 +30,13 @@ class Grade extends Component {
               className="btn btn-primary btn-sm mr-2 operations"
               onClick={this.handleUpdate}
             >
-            <i className="fas fa-edit"> Edit</i>
+              <i className="fas fa-edit"> Edit</i>
             </button>
             <button
               className="btn btn-danger btn-sm ml-2 operations delete"
-              onClick={this.handleDelete}
+              onClick={this.handleConfirmDelete}
             >
-            <i className="fas fa-trash-alt"> Delete</i>
+              <i className="fas fa-trash-alt"> Delete</i>
             </button>
           </td>
         </tr>
