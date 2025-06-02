@@ -39,7 +39,7 @@ class Login extends Component {
           </div>
         </header>
         <main>
-          <form className="mx-auto" onSubit={handleSubmit}>
+          <form className="mx-auto" onSubmit={handleSubmit}>
             <div className="mb-3 form-row">
               <label htmlFor="username" className="col-sm-2 col-form-label">Username</label>
               <div className="col-sm-10 form-group">

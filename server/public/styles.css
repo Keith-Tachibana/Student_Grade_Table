@@ -3,6 +3,24 @@ body {
   overflow-x: hidden;
 }
 
+.empty-div {
+  height: 4rem;
+  width: 100%;
+}
+
+.close {
+  color: #000;
+  float: right;
+  font-size: 2rem;
+}
+
+.close:hover,
+.close:focus {
+  color: rgba(0,0,0,0.5);
+  text-decoration: none;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 1024px) and (orientation: landscape) {
   input::placeholder {
     font-size: 0.75rem;
@@ -45,7 +63,6 @@ body {
 
   .operations {
     margin: 5px;
-
     font-size: 0.8rem;
   }
 }

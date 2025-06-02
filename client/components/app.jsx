@@ -5,6 +5,7 @@ import Header from './header';
 import Login from './login';
 import GradeTable from './gradeTable';
 import GradeForm from './gradeForm';
+import ConfirmationModal from './confirmationModal';
 //import useToken from '../api/useToken';
 
 class App extends Component {
@@ -18,10 +19,18 @@ class App extends Component {
         grade: '',
         gradeId: null,
         update: false
-      }
+      },
+      gradeIdToDelete: null,
+      displayConfirmationModal: false,
+      deleteMessage: null,
+      displayConfirmationMessage: false,
+      confirmationMessage: null
     };
     this.addGrade = this.addGrade.bind(this);
     this.deleteGrade = this.deleteGrade.bind(this);
+    this.showDeleteModal = this.showDeleteModal.bind(this);
+    this.handleDeleteConfirm = this.handleDeleteConfirm.bind(this);
+    this.handleDeleteCancel = this.handleDeleteCancel.bind(this);
     this.updateGrade = this.updateGrade.bind(this);
     this.clearUpdate = this.clearUpdate.bind(this);
   }
@@ -58,8 +67,13 @@ class App extends Component {
         });
         const result = await response.json();
         this.setState({
-          grades: this.state.grades.concat(result)
-        });
+          grades: this.state.grades.concat(result),
+          confirmationMessage: "The grade was added successfully.",
+          displayConfirmationMessage: true
+        }, () => setTimeout(() => this.setState({
+            displayConfirmationMessage: false
+          }), 3000)
+        );
       } catch (error) {
         console.error(error.message);
       }
@@ -76,13 +90,48 @@ class App extends Component {
         this.setState(previous => {
           const newGrades = previous.grades.map(grade => grade.gradeId === result.id ? result : grade);
           return {
-            grades: newGrades
+            grades: newGrades,
+            confirmationMessage: "The grade was updated successfully.",
+            displayConfirmationMessage: true
           };
-        }, () => this.getGrades());
+        }, () => this.getGrades() && setTimeout(() => this.setState({
+          displayConfirmationMessage: false
+        }), 3000));
       } catch (error) {
         console.error(error.message);
       }
     }
+  }
+
+  showDeleteModal(id) {
+    const gradeToDelete = this.state.grades.find(grade => grade.gradeId === id);
+    this.setState({
+      gradeIdToDelete: id,
+      confirmationMessage: null,
+      deleteMessage: `Are you sure you want to delete the grade of ${gradeToDelete.grade} for ${gradeToDelete.name} in the course, "${gradeToDelete.course}"?`,
+      displayConfirmationModal: true
+    })
+  }
+
+  handleDeleteConfirm() {
+    if (this.state.gradeIdToDelete) {
+      this.deleteGrade(this.state.gradeIdToDelete);
+    }``
+    this.setState({
+      deleteMessage: null,
+      gradeIdToDelete: null,
+      confirmationMessage: "The grade was deleted successfully.",
+      displayConfirmationModal: false,
+      displayConfirmationMessage: true
+    }, () => setTimeout(() => this.setState({
+      displayConfirmationMessage: false
+    }), 3000));
+  }
+
+  handleDeleteCancel() {
+    this.setState({
+      displayConfirmationModal: false
+    });
   }
 
   async deleteGrade(id) {
@@ -137,10 +186,13 @@ class App extends Component {
         <Header averageGrade={this.getAverageGrade()} />
         <main>
           <div className="container-fluid">
+            <div className="row empty-div">
+              {this.state.displayConfirmationMessage ? <div className="alert alert-success" role="alert">{this.state.confirmationMessage}</div> : null}
+            </div>
             <div className="row grade-container">
               <GradeTable
                 grades={this.state.grades}
-                deleteGrade={this.deleteGrade}
+                deleteGrade={this.showDeleteModal}
                 updateGrade={this.updateGrade}
               />
               <GradeForm
@@ -149,6 +201,13 @@ class App extends Component {
                 clearUpdate={this.clearUpdate}
               />
             </div>
+            <ConfirmationModal
+              showModal={this.state.displayConfirmationModal}
+              confirmModal={this.handleDeleteConfirm}
+              hideModal={this.handleDeleteCancel}
+              id={this.state.gradeIdToDelete}
+              message={this.state.deleteMessage}
+            />
           </div>
         </main>
       </React.Fragment>
