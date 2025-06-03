@@ -12,6 +12,7 @@ A simple CRUD (Create, Read, Update, Delete) application designed for teachers t
 | FontAwesome                         |     5.11.2    |
 | PG                                  |     7.18.2    |
 | React                               |    16.13.0    |
+| React-Bootstrap                     |    2.10.10    |
 | React-DOM                           |    16.13.0    |
 | Webpack                             |     4.42.0    |
 | Webpack-CLI                         |     3.3.11    |
@@ -34,15 +35,15 @@ Try the application live on [my porftolio website](https://grades.keith-tachiban
 | NPM               |     6 or higher     |
 | PM2               |     4 or higher     |
 | PostgreSQL        |    10 or higher     |
-| Ubuntu Server     |     18.04 LTS       |
+| Ubuntu Server     | 18.04 LTS or higher |
 #### Getting Started
-1. Clone the repoistory
+1. Assuming your current working directory is your user home directory, clone the repoistory
   ```shell
-  git clone https://github.com/Keith-Tachibana/Student_Grade_Table_Fullstack.git
+  git clone https://github.com/Keith-Tachibana/Student_Grade_Table.git
   ```
 2. Change directory to cloned folder
   ```shell
-  cd Student_Grade_Table_Fullstack/
+  cd Student_Grade_Table/
   ```
 3. Install all dependencies with NPM
   ```shell
@@ -69,31 +70,42 @@ Try the application live on [my porftolio website](https://grades.keith-tachiban
   cd /etc/nginx/sites-available
   sudo nano default
   ```
-   - 8a. In the "server" code block, add this underneath the first location definition:
+   - 8a. In the "server" code block, add this underneath the first location definition
         ```shell
         location /api {
+          include proxy_params;
           proxy_pass http://127.0.0.1:3000;
         }
         ```
    - 8b. Save your changes (`Ctrl + O`) and exit (`Ctrl + X`)
    - 8c. Link your default site to the sites-enabled directory (if not already done):
         ```shell
-        sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+        sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
         ```
-9. Start nginx
+9. Check nginx configuration is correct
   ```shell
-  sudo service nginx start
+  sudo nginx -t
   ```
-10. Transpile React components using Webpack
+   - 9a. If so, start nginx service
+        ```shell
+        sudo systemctl start nginx
+        ```
+   - 9b. Otherwise, go back and correct the edits you made above, then run step 9 again
+
+10. Go back to the project's root directory, assuming it's located in your user home directory
+  ```shell
+  cd ~/Student_Grade_Table/
+  ```
+
+11. Transpile React components using Webpack
   ```shell
   npm run build
   ```
-11. Change directory to the server folder
+
+12. Start the Express.js server using the PM2 module and the built-in NPM scripts
   ```shell
-  cd server/
+  pm2 start --name "studentGradeTable" npm -- start
   ```
-12. Start the Express.js server using the PM2 module
-  ```shell
-  sudo pm2 --name "studentGradeTable" start index.js
-  ```
-13. Open your default web browser and navigate to http://localhost:3000/ to see the result!
+    *You may have to prefix the above command with "sudo" if you get a permissions error
+
+13. Open your default web browser and navigate to http://localhost:3001/ to see the result!
