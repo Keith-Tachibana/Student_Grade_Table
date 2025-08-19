@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-//import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Header from './header';
-import Login from './login';
 import GradeTable from './gradeTable';
 import GradeForm from './gradeForm';
 import ConfirmationModal from './confirmationModal';
-//import useToken from '../api/useToken';
+
 
 class App extends Component {
   constructor(props) {
@@ -95,8 +93,9 @@ class App extends Component {
             displayConfirmationMessage: true
           };
         }, () => this.getGrades() && setTimeout(() => this.setState({
-          displayConfirmationMessage: false
-        }), 3000));
+            displayConfirmationMessage: false
+          }), 3000)
+        );
       } catch (error) {
         console.error(error.message);
       }
@@ -124,8 +123,9 @@ class App extends Component {
       displayConfirmationModal: false,
       displayConfirmationMessage: true
     }, () => setTimeout(() => this.setState({
-      displayConfirmationMessage: false
-    }), 3000));
+        displayConfirmationMessage: false
+      }), 3000)
+    );
   }
 
   handleDeleteCancel() {

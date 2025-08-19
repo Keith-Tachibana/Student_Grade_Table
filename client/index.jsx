@@ -3,6 +3,8 @@ import { render } from 'react-dom';
 import App from './components/app';
 
 render(
-  <App />,
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
   document.querySelector('#root')
 );
